@@ -19,7 +19,7 @@ import ph.com.alliance.entity.SpecificSchedule;
  * Sample data access object implementation using Java Persistence API.
  *
  */
-@Repository("airconDao")
+@Repository("specificScheduleDao")
 public class SpecificScheduleDaoImpl implements SpecificScheduleDao {
 
 	@Override

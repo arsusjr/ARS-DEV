@@ -15,10 +15,10 @@ import ph.com.alliance.entity.Aircon;
 import ph.com.alliance.entity.SpecificSchedule;
 import ph.com.alliance.service.ARSService;
 
+@Controller
+@RequestMapping("/ars")
 public class SpecificScheduleController {
-	@Controller
-	@RequestMapping("/ars")
-	public class AirconController {
+
 
 		@Autowired
 		private ARSService aRSService;
@@ -32,7 +32,6 @@ public class SpecificScheduleController {
 	    	map.addAttribute("specific_schedule_list", specific_schedule_list);
 
 	        return "ars/aircon_schedule";
-	    }
 		
 	    
 	}
