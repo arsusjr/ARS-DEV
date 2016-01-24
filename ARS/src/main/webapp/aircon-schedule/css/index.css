@@ -1,0 +1,28 @@
+html .index{
+	height: 100%;
+	background: url('../assets/img/above-the-clouds.jpg');
+	background-size: cover;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}  
+
+#main {
+flex: 1 0 auto;
+}
+
+
+.Site-content {
+  flex: 1;
+}
+
+.container .pull-low{
+	margin-top: 290px;
+}
+
+nav > .borderless{
+	font-size:  0px;
+}
