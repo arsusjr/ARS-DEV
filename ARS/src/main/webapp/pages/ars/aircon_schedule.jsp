@@ -22,7 +22,7 @@
 
   <ul id="dropdown1" class="dropdown-content">
   <li><a href="${pageContext.request.contextPath}/ars/aircon_schedule">View Schedule</a></li>
-  <li><a href="#!">Calendar Weekly View</a></li>
+  <li><a href="${pageContext.request.contextPath}/ars/weekly_schedule">Calendar Weekly View</a></li>
   </ul>
   <!-- END drop down1 content -->
   <!-- START drop down2 content -->
