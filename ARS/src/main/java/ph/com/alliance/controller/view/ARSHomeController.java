@@ -9,18 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Example controller class that handles request for the application root.
- * 
+ * Example controller class that hadles static view requests.
+ * All requests that returns pages (html, xhtml, jsp, jspx, etc.) is handled here. 
  *
  */
 @Controller
-@RequestMapping("")
-public class HomeController {
+@RequestMapping("/")
+public class ARSHomeController {
 	
     @RequestMapping(method=RequestMethod.GET)
-    public String loadMainMenuIndex(HttpServletRequest request, HttpServletResponse response, ModelMap map){
-    	 	
-		return "/index";
+    public String aRSHome(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
+    	System.out.println("-- LANDING PAGE --");
+    	
+        return "ars/landingpage";
     }
+    
+    
 
 }

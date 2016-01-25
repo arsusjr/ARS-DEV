@@ -27,6 +27,14 @@ public class AirconController {
 	@Autowired
 	private ARSService aRSService;
 	
+    @RequestMapping("/index")
+    public String aRSIndex(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
+    	System.out.println("-- INDEX PAGE --");
+    	
+        return "ars/index";
+    }
+    
+    
     @RequestMapping("/aircon_list")
     public String viewAirconList(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
     	System.out.println("-- VIEW AIRCON LIST --");

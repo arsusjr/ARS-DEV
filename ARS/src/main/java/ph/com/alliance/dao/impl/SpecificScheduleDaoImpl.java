@@ -23,10 +23,17 @@ import ph.com.alliance.entity.SpecificSchedule;
 public class SpecificScheduleDaoImpl implements SpecificScheduleDao {
 
 	@Override
-	public List<SpecificSchedule> getSpecificScheduleList(EntityManager entityManager) {
-		Query query = entityManager.createQuery("FROM SpecificSchedule"); // Select * From
-																// SpecificSchedule
-		List<SpecificSchedule> specific_schedule_list = query.getResultList();
+	public List<String> getSpecificScheduleList(EntityManager entityManager) {
+		
+		Query query = entityManager.createQuery(
+				"SELECT aircon.name, specific_schedule.date, specific_schedule.time_start, specific_schedule.time_end, specific_schedule.modified_by, specific_schedule.modified_date  FROM specific_schedule, aircon WHERE specific_schedule.id = aircon.id");
+
+		// SpecificSchedule
+
+		List<String> specific_schedule_list = query.getResultList();
+	
+		System.out.print("SIZE: " + specific_schedule_list);
+
 		return specific_schedule_list;
 	}
 
