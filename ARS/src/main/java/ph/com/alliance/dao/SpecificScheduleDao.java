@@ -14,7 +14,7 @@ import ph.com.alliance.entity.SpecificSchedule;
  */
 public interface SpecificScheduleDao {
 	
-	public List<SpecificSchedule> getSpecificScheduleList(EntityManager entityManager);
+	public List<String> getSpecificScheduleList(EntityManager entityManager);
 
 
 }

@@ -44,7 +44,7 @@ public class SpecificSchedule implements Serializable {
 
 	@Column(name="time_end")
 	private Time timeEnd;
-
+	
 	@Column(name="time_start")
 	private Time timeStart;
 

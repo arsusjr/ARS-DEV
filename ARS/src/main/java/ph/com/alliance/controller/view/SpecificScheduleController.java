@@ -19,21 +19,22 @@ import ph.com.alliance.service.ARSService;
 @RequestMapping("/ars")
 public class SpecificScheduleController {
 
+	@Autowired
+	private ARSService aRSService;
+	
 
-		@Autowired
-		private ARSService aRSService;
-		
-	    @RequestMapping(value = "/aircon_schedule", method = RequestMethod.GET)
-	    public String viewAirconSchedule(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
-	    	System.out.println("-- AIRCON SCHEDULE VIEW --");
-	    	
-	    	List<SpecificSchedule> specific_schedule_list = aRSService.getSpecificScheduleList();
-	    	
-	    	map.addAttribute("specific_schedule_list", specific_schedule_list);
+	@RequestMapping(value = "/aircon_schedule", method = RequestMethod.GET)
+	public String viewAirconSchedule(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
+		System.out.println("-- AIRCON SCHEDULE VIEW --");
 
-	        return "ars/aircon_schedule";
-		
-	    
+//		List<SpecificSchedule> specific_schedule_list = aRSService.getSpecificScheduleList();
+//		
+//		map.addAttribute("specific_schedule_list", specific_schedule_list);
+
+		return "ars/aircon_schedule";
+
 	}
+	
+	
 
 }
