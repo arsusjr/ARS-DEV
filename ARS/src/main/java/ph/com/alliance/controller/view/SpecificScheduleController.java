@@ -27,9 +27,11 @@ public class SpecificScheduleController {
 	public String viewAirconSchedule(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
 		System.out.println("-- AIRCON SCHEDULE VIEW --");
 
-//		List<SpecificSchedule> specific_schedule_list = aRSService.getSpecificScheduleList();
-//		
-//		map.addAttribute("specific_schedule_list", specific_schedule_list);
+		List<SpecificSchedule> specific_schedule_list = aRSService.getSpecificScheduleList();
+		
+		map.addAttribute("specific_schedule_list", specific_schedule_list);
+		
+		aRSService.getSpecificScheduleList();
 
 		return "ars/aircon_schedule";
 

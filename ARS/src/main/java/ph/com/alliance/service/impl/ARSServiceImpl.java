@@ -1,5 +1,6 @@
 package ph.com.alliance.service.impl;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import ph.com.alliance.dao.AirconDao;
 import ph.com.alliance.dao.SpecificScheduleDao;
+import ph.com.alliance.dao.UserDao;
 import ph.com.alliance.entity.Aircon;
 import ph.com.alliance.entity.SpecificSchedule;
 import ph.com.alliance.entity.User;
@@ -35,20 +37,43 @@ public class ARSServiceImpl implements ARSService {
 
 	@Autowired
 	private SpecificScheduleDao specificScheduleDao;
+	
+	@Autowired
+	private UserDao userDao;
+	
+	/** ----------------- GET USER LIST ----------------- **/
+	
+	@Override
+	public List<User> getUserList() {
+
+		// get data from DB
+
+		List<User> user_list = userDao.getUserList(transactionManager.getEntityManagerFactory().createEntityManager());
+
+		// logic
+		return user_list;
+	}
+
+	/** ----------------- INSERT USER INFO ----------------- **/
+	@Override
+	public void insert(User userObject) {
+		userDao.insert(transactionManager.getEntityManagerFactory().createEntityManager(), userObject);
+
+	}
+	
 
 	/** ----------------- GET SPECIFIC SCHEDULE LIST ----------------- **/
-//	@Override
-//	public List<SpecificSchedule> getSpecificScheduleList() {
-//
-//		// get data from DB
-//
-//		List<SpecificSchedule> specific_schedule_list = specificScheduleDao
-//				.getSpecificScheduleList(transactionManager.getEntityManagerFactory().createEntityManager());
-//
-//		// logic
-//		return specific_schedule_list;
-//	}
-
+	// @Override
+	// public List<SpecificSchedule> getSpecificScheduleList() {
+	//
+	// // get data from DB
+	//
+	// List<SpecificSchedule> specific_schedule_list = specificScheduleDao
+	// .getSpecificScheduleList(transactionManager.getEntityManagerFactory().createEntityManager());
+	//
+	// // logic
+	// return specific_schedule_list;
+	// }
 
 	/** ----------------- GET AIRCON LIST ----------------- **/
 
@@ -57,10 +82,10 @@ public class ARSServiceImpl implements ARSService {
 
 		// get data from DB
 
-		List<Aircon> list = airconDao.getAirconList(transactionManager.getEntityManagerFactory().createEntityManager());
+		List<Aircon> aircon_list = airconDao.getAirconList(transactionManager.getEntityManagerFactory().createEntityManager());
 
 		// logic
-		return list;
+		return aircon_list;
 	}
 
 	/** ----------------- INSERT AIRCON INFO ----------------- **/
@@ -69,5 +94,14 @@ public class ARSServiceImpl implements ARSService {
 		airconDao.insert(transactionManager.getEntityManagerFactory().createEntityManager(), airconObject);
 
 	}
+
+	@Override
+	public List<SpecificSchedule> getSpecificScheduleList() {
+		List<SpecificSchedule> specific_schedule_list = specificScheduleDao
+				.getSpecificScheduleList(transactionManager.getEntityManagerFactory().createEntityManager());
+		return specific_schedule_list;
+	}
+	
+	
 
 }

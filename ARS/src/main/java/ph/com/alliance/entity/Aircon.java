@@ -9,12 +9,12 @@ import javax.persistence.*;
  * 
  */
 @Entity
-@Table(name="aircon")
+@NamedQuery(name="Aircon.findAll", query="SELECT a FROM Aircon a")
 public class Aircon implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	private int id;
 
 	@Lob
@@ -48,9 +48,5 @@ public class Aircon implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-    public String toString(){
-        return "\nName: " + getName() + "\nDescription: " + getDescription();
-      }
 
 }

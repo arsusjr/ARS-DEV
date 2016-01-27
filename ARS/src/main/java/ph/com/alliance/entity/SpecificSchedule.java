@@ -12,11 +12,12 @@ import java.util.Date;
  */
 @Entity
 @Table(name="specific_schedule")
+@NamedQuery(name="SpecificSchedule.findAll", query="SELECT s FROM SpecificSchedule s")
 public class SpecificSchedule implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	private int id;
 
 	@Column(name="aircon_id")
@@ -44,7 +45,7 @@ public class SpecificSchedule implements Serializable {
 
 	@Column(name="time_end")
 	private Time timeEnd;
-	
+
 	@Column(name="time_start")
 	private Time timeStart;
 
