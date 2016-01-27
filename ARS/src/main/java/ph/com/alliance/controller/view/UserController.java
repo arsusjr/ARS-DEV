@@ -1,21 +1,77 @@
 package ph.com.alliance.controller.view;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import ph.com.alliance.entity.User;
+import ph.com.alliance.service.ARSService;
 
 @Controller
 @RequestMapping("/ars")
 public class UserController {
 
-    @RequestMapping("/users")
-    public String aRSIndex(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
-    	System.out.println("-- USER LIST PAGE --");
-    	
-        return "ars/users";
-    }
-    
+	@Autowired
+	private ARSService aRSService;
+	
+	@RequestMapping("/users")
+	public String aRSIndex(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
+		System.out.println("-- USER LIST PAGE --");
+
+		return "ars/users";
+	}
+
+	@RequestMapping("/add_user")
+	public String addUser(HttpServletRequest request, HttpServletResponse response, ModelMap map)
+			throws ParseException {
+		System.out.println("-- ADD USER --");
+
+		String first_name, last_name, email, birthday, tin_no;
+		boolean admin_flag;
+		Byte adminFlag;
+
+		first_name = request.getParameter("first_name");
+		last_name = request.getParameter("last_name");
+		email = request.getParameter("email");
+		tin_no = request.getParameter("tin_no");
+		birthday = request.getParameter("birthday");
+
+		DateFormat dateFormat = new SimpleDateFormat("YYYY/MM/DD");
+
+		Date date = dateFormat.parse(birthday);
+
+		admin_flag = Boolean.parseBoolean(request.getParameter("admin_flag"));
+
+		User userObject = new User();
+
+		userObject.setFirstName(first_name);
+		userObject.setFamilyName(last_name);
+		userObject.setEmail(email);
+		userObject.setTinNo(tin_no);
+		userObject.setBirthdate(date);
+		userObject.setPassword("12345");
+		if (admin_flag == true) {
+
+			adminFlag = 1;
+
+		} else {
+
+			adminFlag = 0;
+		}
+		userObject.setAdminFlag(adminFlag);
+
+		aRSService.insert(userObject);
+		
+		return "ars/users";
+	}
+
 }

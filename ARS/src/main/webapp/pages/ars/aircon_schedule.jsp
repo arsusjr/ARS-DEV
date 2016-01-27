@@ -179,9 +179,9 @@
         </thead>
 
         <tbody>
-   <%--      <c:forEach var="aircon_sched" items="${specific_schedule_list}"> --%>
+        <c:forEach var="aircon_sched" items="${specific_schedule_list}">
           <tr>
-            <td></td>
+            <td>${aircon_sched.id}</td>
             <td></td>
             <td></td>
             <td></td>
@@ -195,7 +195,7 @@
               </a>
             </td>
           </tr>
-    <%--       </c:forEach> --%>
+          </c:forEach>
         </tbody>
       </table>
       </div>

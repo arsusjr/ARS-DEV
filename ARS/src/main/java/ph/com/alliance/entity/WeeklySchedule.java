@@ -12,10 +12,12 @@ import java.util.Date;
  */
 @Entity
 @Table(name="weekly_schedule")
+@NamedQuery(name="WeeklySchedule.findAll", query="SELECT w FROM WeeklySchedule w")
 public class WeeklySchedule implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	private int id;
 
 	@Column(name="aircon_id")
