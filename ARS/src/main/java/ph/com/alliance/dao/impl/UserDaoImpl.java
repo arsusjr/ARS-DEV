@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public List<User> getUserList(EntityManager entityManager) {
-		Query query = entityManager.createQuery("FROM User"); // Select * From
+		Query query = entityManager.createQuery("FROM User WHERE deleted_flag = 0"); // Select * From
 																// User
 		List<User> userList = query.getResultList();
 		return userList;

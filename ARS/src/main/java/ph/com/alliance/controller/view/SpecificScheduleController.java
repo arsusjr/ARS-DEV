@@ -31,7 +31,7 @@ public class SpecificScheduleController {
 		
 		map.addAttribute("specific_schedule_list", specific_schedule_list);
 		
-		aRSService.getSpecificScheduleList();
+		
 
 		return "ars/aircon_schedule";
 

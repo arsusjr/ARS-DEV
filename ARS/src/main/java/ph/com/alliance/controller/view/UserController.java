@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,6 +28,10 @@ public class UserController {
 	public String aRSIndex(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
 		System.out.println("-- USER LIST PAGE --");
 
+		List<User> user_list = aRSService.getUserList();
+		
+		map.addAttribute("user_list", user_list);
+		
 		return "ars/users";
 	}
 

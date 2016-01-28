@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -207,36 +208,36 @@
 				<table>
 					<thead>
 						<tr>
-							<th data-field="reserved_by">ID</th>
-							<th data-field="reserved_to">First name</th>
-							<th data-field="data">Last name</th>
-							<th data-field="start_time">joined in</th>
-							<th data-field="end_time">status</th>
+							<th data-field="reserved_by">Email</th>
+							<th data-field="reserved_to">Name</th>
+							<th data-field="data">Birthday</th>
+							<th data-field="start_time">Address</th>
+							<th data-field="end_time">Admin Flag</th>
+							<th data-field="end_time">Created by/date</th>
+							<th data-field="end_time">Modified by/date</th>
+
 						</tr>
 					</thead>
 
 					<tbody>
-						<tr>
-							<td><a href="viewuser.html">33561322</a></td>
-							<td>Eclair</td>
-							<td>john</td>
-							<td>Sept 2, 2011</td>
-							<td>active</td>
-						</tr>
-						<tr>
-							<td><a href="viewuser.html">22344223</a></td>
-							<td>Jellybean</td>
-							<td>pop tarts</td>
-							<td>Jan 8, 2012</td>
-							<td>active</td>
-						</tr>
-						<tr>
-							<td><a href="viewuser.html">22344222</a></td>
-							<td>Lollipop</td>
-							<td>lollipush</td>
-							<td>March 21, 2012</td>
-							<td>active</td>
-						</tr>
+						<c:forEach var="user" items="${user_list}">
+							<tr>
+								<td>${user.email}</td>
+								<td>${user.firstName} ${user.familyName}</td>
+								<td>${user.birthdate}</td>
+								<td>${user.address}</td>
+								<c:choose>
+									<c:when test="${user.adminFlag==1}">
+										<td><center>ADMIN</center></td>
+									</c:when>
+									<c:otherwise>
+										<td><center>USER</center></td>
+									</c:otherwise>
+								</c:choose>
+								<td>${user.createdDate}</td>
+								<td>${user.modifiedDate}</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
 			</div>
@@ -285,7 +286,7 @@
 			$('.datepicker').pickadate({
 				selectMonths : true, // Creates a dropdown to control month
 				selectYears : 15,
-				format: 'yyyy/mm/dd'			
+				format : 'yyyy/mm/dd'
 			});
 
 			// the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
