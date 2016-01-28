@@ -19,6 +19,8 @@ public class User implements Serializable {
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	private int id;
 
+	private String address;
+
 	@Column(name="admin_flag")
 	private byte adminFlag;
 
@@ -68,6 +70,14 @@ public class User implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getAddress() {
+		return this.address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public byte getAdminFlag() {

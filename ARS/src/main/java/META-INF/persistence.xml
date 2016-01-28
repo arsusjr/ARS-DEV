@@ -3,7 +3,7 @@
 	<persistence-unit name="SoaBaseCode">
 		<class>ph.com.alliance.entity.Aircon</class>
 		<class>ph.com.alliance.entity.SpecificSchedule</class>
-		<class>ph.com.alliance.entity.User</class>
 		<class>ph.com.alliance.entity.WeeklySchedule</class>
+		<class>ph.com.alliance.entity.User</class>
 	</persistence-unit>
 </persistence>

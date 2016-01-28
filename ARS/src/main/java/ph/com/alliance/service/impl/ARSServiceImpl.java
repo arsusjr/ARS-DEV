@@ -37,12 +37,12 @@ public class ARSServiceImpl implements ARSService {
 
 	@Autowired
 	private SpecificScheduleDao specificScheduleDao;
-	
+
 	@Autowired
 	private UserDao userDao;
-	
+
 	/** ----------------- GET USER LIST ----------------- **/
-	
+
 	@Override
 	public List<User> getUserList() {
 
@@ -60,20 +60,14 @@ public class ARSServiceImpl implements ARSService {
 		userDao.insert(transactionManager.getEntityManagerFactory().createEntityManager(), userObject);
 
 	}
-	
 
 	/** ----------------- GET SPECIFIC SCHEDULE LIST ----------------- **/
-	// @Override
-	// public List<SpecificSchedule> getSpecificScheduleList() {
-	//
-	// // get data from DB
-	//
-	// List<SpecificSchedule> specific_schedule_list = specificScheduleDao
-	// .getSpecificScheduleList(transactionManager.getEntityManagerFactory().createEntityManager());
-	//
-	// // logic
-	// return specific_schedule_list;
-	// }
+	@Override
+	public List<SpecificSchedule> getSpecificScheduleList() {
+		List<SpecificSchedule> specific_schedule_list = specificScheduleDao
+				.getSpecificScheduleList(transactionManager.getEntityManagerFactory().createEntityManager());
+		return specific_schedule_list;
+	}
 
 	/** ----------------- GET AIRCON LIST ----------------- **/
 
@@ -82,7 +76,8 @@ public class ARSServiceImpl implements ARSService {
 
 		// get data from DB
 
-		List<Aircon> aircon_list = airconDao.getAirconList(transactionManager.getEntityManagerFactory().createEntityManager());
+		List<Aircon> aircon_list = airconDao
+				.getAirconList(transactionManager.getEntityManagerFactory().createEntityManager());
 
 		// logic
 		return aircon_list;
@@ -94,14 +89,5 @@ public class ARSServiceImpl implements ARSService {
 		airconDao.insert(transactionManager.getEntityManagerFactory().createEntityManager(), airconObject);
 
 	}
-
-	@Override
-	public List<SpecificSchedule> getSpecificScheduleList() {
-		List<SpecificSchedule> specific_schedule_list = specificScheduleDao
-				.getSpecificScheduleList(transactionManager.getEntityManagerFactory().createEntityManager());
-		return specific_schedule_list;
-	}
-	
-	
 
 }

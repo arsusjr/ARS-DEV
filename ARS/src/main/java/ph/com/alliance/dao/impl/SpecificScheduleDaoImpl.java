@@ -24,18 +24,12 @@ public class SpecificScheduleDaoImpl implements SpecificScheduleDao {
 
 	@Override
 	public List<SpecificSchedule> getSpecificScheduleList(EntityManager entityManager) {
-
-		Query query = entityManager.createQuery("FROM SpecificSchedule ss where ss.deleted_flag = :0");
+		Byte deleted_flag=0;
+		Query query = entityManager.createQuery("FROM SpecificSchedule WHERE deleted_flag = 0");
 
 		List <SpecificSchedule> specific_schedule_list;
 		
 		specific_schedule_list = query.getResultList();
-		
-		// SpecificSchedule
-
-		// List<String> specific_schedule_list = query.getResultList();
-		//
-		// System.out.print("SIZE: " + specific_schedule_list);
 
 		return specific_schedule_list;
 	}

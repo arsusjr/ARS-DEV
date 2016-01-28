@@ -38,18 +38,29 @@ public class ARSHomeController {
 	public String login(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
 		System.out.println("-- LOGIN --");
 
-		String email, password;
-		
+		String email, password, first_name = null;
+
 		email = request.getParameter("email");
 		password = request.getParameter("password");
-		
+
 		List<User> user_list = aRSService.getUserList();
-		
-		for(User u : user_list){
+
+		for (User u : user_list) {
+
+			System.out.println("\nEMAIL JSP: " + email + " | DB: " + u.getEmail() + "\nPASSWORD JSP: " + password + " | DB: " + u.getPassword());
 			
-			System.out.println("EMAIL: " + u.getEmail());
+			if (u.getEmail()==email) {
+
+				System.out.println("CONDITION FNAME DB: " +  u.getFirstName());
+				first_name = u.getFirstName();
+				
+			}
 		}
 		
+		System.out.println("FIRST NAME: " + first_name);
+		
+		request.getSession().setAttribute("first_name", "MY NAME");
+
 		return "ars/index";
 
 	}
