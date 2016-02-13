@@ -18,15 +18,24 @@ public interface ARSService {
 	public List<Aircon> getAirconList();
 
 	public void insert(Aircon airconObject);
+
+	/**----------------- MODULE 1 -----------------**/
+	
+	public User findUser(String email, String password);
 	
 	/**----------------- MODULE 2 -----------------**/
 	
 	public List<User> getUserList();
-	public void insert(User userObject);
+	public void insertUser(User userObject);
+	public User getUser(int id);
+	public void updateUser(User userObject);
+	public void deleteUser(User userObject);
 
 	/**----------------- MODULE 4 -----------------**/
 	
 	public List<SpecificSchedule> getSpecificScheduleList();
+	public SpecificSchedule getSchedule(int id);
+	public void updateSpecificSchedule(SpecificSchedule specificScheduleObject);
 	
 	
 }

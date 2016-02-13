@@ -35,7 +35,7 @@
 		<li><a href="#!">One</a></li>
 		<li><a href="#!">Two</a></li>
 		<li class="divider"></li>
-		<li><a href="#!">Logout</a></li>
+		<li><a href="${pageContext.request.contextPath}/ars/logout">Logout</a></li>
 	</ul>
 	<!-- END drop down2 content -->
 	<nav class="light-blue lighten-1" role="navigation">
@@ -50,9 +50,7 @@
 					class="material-icons right">arrow_drop_down</i></a></li>
 			<li><a class="dropdown-button" href="#!"
 				data-activates="dropdown2">
-					<%
-						session.getAttribute("first_name");
-					%> ${sessionScope.first_name}<i class="material-icons right">arrow_drop_down</i>
+					${first_name}<i class="material-icons right">arrow_drop_down</i>
 			</a></li>
 		</ul>
 		<!-- END WEB VIEW NAV -->
@@ -184,7 +182,7 @@
 
 
 	<!--  Scripts-->
-	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="../aircon-schedule/js/jquery-2.1.1.min.js"></script>
 	<script src="../aircon-schedule/js/materialize.js"></script>
 	<script src="../aircon-schedule/js/init.js"></script>
 	<script type="text/javascript">

@@ -50,21 +50,23 @@
 					<!--  ROW START-->
 					<div class="row">
 						<!-- FORM START -->
-						<form class="col s12" action="${pageContext.request.contextPath}/ars/"
-							method="POST">
+						<form class="col s12"
+							action="${pageContext.request.contextPath}/ars/" method="POST">
 							<div class="row">
 								<div class="input-field col s12">
 									<input id="username" name="email" type="text" class="validate">
 									<label for="username">Email</label>
+									<p>${ErrorMessage}</p>
 								</div>
 								<div class="input-field col s12">
 									<input id="password" name="password" type="password"
 										class="validate"> <label for="password">Password</label>
+									<p>${ErrorMessage}</p>
 								</div>
 							</div>
 
 							<div class="modal-footer">
-							<button type="submit"
+								<button type="submit"
 									class=" modal-action modal-close waves-effect waves-green btn-flat">Login</button>
 							</div>
 						</form>
@@ -83,8 +85,7 @@
 	</main>
 	<footer class="page-footer grey darken-3">
 	<div class="container">
-		<br>
-		<br>
+		<br> <br>
 	</div>
 
 	</footer>

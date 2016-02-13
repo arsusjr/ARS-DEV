@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--
   GOODLUCK 
@@ -38,7 +39,7 @@
 		<li><a href="#!">One</a></li>
 		<li><a href="#!">Two</a></li>
 		<li class="divider"></li>
-		<li><a href="#!">Logout</a></li>
+		<li><a href="${pageContext.request.contextPath}/ars/logout">Logout</a></li>
 	</ul>
 	<!-- END drop down2 content -->
 	<nav class="light-blue lighten-1" role="navigation">
@@ -52,7 +53,7 @@
 				data-activates="dropdown1">Schedules<i
 					class="material-icons right">arrow_drop_down</i></a></li>
 			<li><a class="dropdown-button" href="#!"
-				data-activates="dropdown2">USERNAME<i
+				data-activates="dropdown2">${first_name}<i
 					class="material-icons right">arrow_drop_down</i></a></li>
 		</ul>
 		<!-- END WEB VIEW NAV -->
@@ -108,49 +109,7 @@
 						class=" modal-action modal-close waves-effect waves-green btn-flat">Add</a>
 				</div>
 			</div>
-			<div id="edit_sched" class="modal">
-				<div class="modal-content">
-					<h4>Edit Schedule</h4>
-					<!--  ROW START-->
-					<div class="row">
-						<!-- FORM START -->
-						<form class="col s12">
-							<div class="row">
-								<div class="input-field col s12">
-									<input id="username" type="text" class="validate"> <label
-										for="username">unit</label>
-								</div>
-								<div class="input-field col s12">
-									<input id="username" type="text" class="validate"> <label
-										for="username">reserve to:</label>
-								</div>
 
-								<div class="input-field col s12">
-									<input id="theDate" type="date" class="datepicker"> <label
-										class="active" for="first_name2">date</label>
-								</div>
-								<div class="input-field col s6">
-									<input id="start_time" type="text" class="validate"
-										value="10:00 AM"> <label for="start_time">start
-										time</label>
-								</div>
-								<div class="input-field col s6">
-									<input id="end_time" type="text" class="validate"
-										value="7:00 PM"> <label for="end_time">end
-										time</label>
-								</div>
-							</div>
-						</form>
-						<!-- FORM END -->
-					</div>
-					<!-- ROW END -->
-				</div>
-				<!-- -->
-				<div class="modal-footer">
-					<a href="#!"
-						class=" modal-action modal-close waves-effect waves-green btn-flat">Save</a>
-				</div>
-			</div>
 			<div id="delete_sched" class="modal">
 				<div class="modal-content">
 					<h4>Delete Schedule?</h4>
@@ -165,8 +124,7 @@
 			</div>
 
 			<!-- add sched modal END -->
-			<br>
-			<br>
+			<br> <br>
 
 
 			<div class="row center">
@@ -177,14 +135,25 @@
 					class="btn-floating btn-large waves-effect waves-light blue modal-trigger"
 					href="#add_sched"><i class="material-icons">add</i></a>
 			</div>
-			<br>
-			<br>
+			<br> <br>
 
 		</div>
 	</div>
 
 
 	<div class="container">
+
+		<nav>
+		<div class="nav-wrapper">
+			<form action="${pageContext.request.contextPath}/ars/aircon_schedule" method="GET">
+				<div class="input-field">
+					<input id="search" type="search" name="search" required> <label
+						for="search"><i class="material-icons">search</i></label> <i
+						class="material-icons">close</i>
+				</div>
+			</form>
+		</div>
+		</nav>
 		<div class="section">
 
 			<!--   Icon Section   -->
@@ -209,7 +178,8 @@
 								<td>${aircon_sched.timeStart}</td>
 								<td>${aircon_sched.timeEnd}</td>
 								<td></td>
-								<td><a href="#edit_sched"
+								<td><a
+									href="${pageContext.request.contextPath}/ars/edit_schedule?id=${aircon_sched.id}"
 									class="btn-floating btn-small waves-effect waves-light blue modal-trigger">
 										<i class="material-icons">edit</i>
 								</a> <a href="#delete_sched"
@@ -223,8 +193,7 @@
 			</div>
 
 		</div>
-		<br>
-		<br>
+		<br> <br>
 
 		<div class="section">
 			<hr>
@@ -262,7 +231,7 @@
 
 
 	<!--  Scripts-->
-	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="../aircon-schedule/js/jquery-2.1.1.min.js"></script>
 	<script src="../aircon-schedule/js/materialize.js"></script>
 	<script src="../aircon-schedule/js/init.js"></script>
 	<script type="text/javascript">
