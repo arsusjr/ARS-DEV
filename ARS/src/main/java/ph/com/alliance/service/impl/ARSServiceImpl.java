@@ -41,6 +41,56 @@ public class ARSServiceImpl implements ARSService {
 	@Autowired
 	private UserDao userDao;
 
+	/**
+	 * ----------------- UPDATE USER -----------------
+	 * 
+	 * @return
+	 **/
+
+	@Override
+	public void updateUser(User userObject) {
+
+		// get data from DB
+
+		// logic
+		userDao.updateUser(transactionManager.getEntityManagerFactory().createEntityManager(), userObject);
+	}
+
+	/** ----------------- UPDATE SCHEDULE ----------------- **/
+
+	public void updateSpecificSchedule(SpecificSchedule specificScheduleObject) {
+
+		// get data from DB
+
+		// logic
+		specificScheduleDao.updateSpecificSchedule(transactionManager.getEntityManagerFactory().createEntityManager(),
+				specificScheduleObject);
+	}
+
+	/** ----------------- GET SCHEDULE ----------------- **/
+
+	@Override
+	public SpecificSchedule getSchedule(int id) {
+
+		// get data from DB
+
+		// logic
+		return specificScheduleDao.getSchedule(transactionManager.getEntityManagerFactory().createEntityManager(), id);
+
+	}
+
+	/** ----------------- GET USER ----------------- **/
+
+	@Override
+	public User getUser(int id) {
+
+		// get data from DB
+
+		// logic
+		return userDao.getUser(transactionManager.getEntityManagerFactory().createEntityManager(), id);
+
+	}
+
 	/** ----------------- GET USER LIST ----------------- **/
 
 	@Override
@@ -54,10 +104,25 @@ public class ARSServiceImpl implements ARSService {
 		return user_list;
 	}
 
+	/** ----------------- GET USER INFO ----------------- **/
+
+	public User findUser(String email, String password) {
+
+		return userDao.findUser(transactionManager.getEntityManagerFactory().createEntityManager(), email, password);
+
+	}
+
 	/** ----------------- INSERT USER INFO ----------------- **/
 	@Override
-	public void insert(User userObject) {
+	public void insertUser(User userObject) {
 		userDao.insert(transactionManager.getEntityManagerFactory().createEntityManager(), userObject);
+
+	}
+
+	/** ----------------- DELETE USER ----------------- **/
+	@Override
+	public void deleteUser(User userObject) {
+		userDao.delete(transactionManager.getEntityManagerFactory().createEntityManager(), userObject);
 
 	}
 

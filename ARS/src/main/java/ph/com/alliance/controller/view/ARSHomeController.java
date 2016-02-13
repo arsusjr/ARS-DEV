@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import ph.com.alliance.entity.SpecificSchedule;
 import ph.com.alliance.entity.User;
@@ -35,34 +36,49 @@ public class ARSHomeController {
 	}
 
 	@RequestMapping(value = "/ars/", method = RequestMethod.POST)
-	public String login(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
+	public ModelAndView login(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
 		System.out.println("-- LOGIN --");
 
-		String email, password, first_name = null;
+		ModelAndView mav = null;
+		String email, password;
 
 		email = request.getParameter("email");
 		password = request.getParameter("password");
 
-		List<User> user_list = aRSService.getUserList();
-
-		for (User u : user_list) {
-
-			System.out.println("\nEMAIL JSP: " + email + " | DB: " + u.getEmail() + "\nPASSWORD JSP: " + password + " | DB: " + u.getPassword());
+		if (email.isEmpty()) {
+			map.addAttribute("ErrorMessage", "Enter Email .");
+			mav = new ModelAndView("ars/landingpage");
 			
-			if (u.getEmail()==email) {
+		} else if (password.isEmpty()) {
 
-				System.out.println("CONDITION FNAME DB: " +  u.getFirstName());
-				first_name = u.getFirstName();
-				
-			}
+			map.addAttribute("ErrorMessage", "Enter Password .");
+			mav = new ModelAndView("ars/landingpage");
+			
+		} else if (email.isEmpty() && password.isEmpty()) {
+
+			map.addAttribute("ErrorMessage", "All fields are required .");
+			mav = new ModelAndView("ars/landingpage");
+		} else {
+
+			User user = aRSService.findUser(email, password);
+
+			request.getSession().setAttribute("first_name", user.getFirstName());
+			request.getSession().setAttribute("modified_by", user.getId());
+			mav = new ModelAndView("ars/index");
 		}
-		
-		System.out.println("FIRST NAME: " + first_name);
-		
-		request.getSession().setAttribute("first_name", "MY NAME");
 
-		return "ars/index";
+		return mav;
 
 	}
 
+	@RequestMapping(value = "/ars/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
+
+		System.out.println("-- LOGOUT --");
+
+		request.getSession().invalidate();
+
+		return "ars/landingpage";
+
+	}
 }

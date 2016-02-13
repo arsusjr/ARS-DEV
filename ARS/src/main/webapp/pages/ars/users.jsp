@@ -17,56 +17,6 @@
 <link href="../aircon-schedule/css/style.css" type="text/css"
 	rel="stylesheet" media="screen,projection" />
 
-<style>
-/* Switch Left Right
-==========================*/
-.switch-left-right .switch-label {
-	overflow: hidden;
-}
-
-.switch-left-right .switch-label:before, .switch-left-right .switch-label:after
-	{
-	width: 20px;
-	height: 20px;
-	top: 4px;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	padding: 11px 0 0 0;
-	text-indent: -12px;
-	border-radius: 20px;
-	box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2), inset 0 0 3px
-		rgba(0, 0, 0, 0.1);
-}
-
-.switch-left-right .switch-label:before {
-	background: #eceeef;
-	text-align: left;
-	padding-left: 80px;
-}
-
-.switch-left-right .switch-label:after {
-	text-align: left;
-	text-indent: 9px;
-	background: #039be5;
-	left: -100px;
-	opacity: 1;
-	width: 100%;
-}
-
-.switch-left-right .switch-input:checked ~ .switch-label:before {
-	opacity: 1;
-	left: 100px;
-}
-
-.switch-left-right .switch-input:checked ~ .switch-label:after {
-	left: 0;
-}
-
-.switch-left-right .switch-input:checked ~ .switch-label {
-	background: inherit;
-}
-</style>
 
 </head>
 <body>
@@ -85,7 +35,7 @@
 		<li><a href="#!">One</a></li>
 		<li><a href="#!">Two</a></li>
 		<li class="divider"></li>
-		<li><a href="#!">Logout</a></li>
+		<li><a href="${pageContext.request.contextPath}/ars/logout">Logout</a></li>
 	</ul>
 	<!-- END drop down2 content -->
 	<nav class="light-blue lighten-1" role="navigation">
@@ -99,7 +49,7 @@
 				data-activates="dropdown1">Schedules<i
 					class="material-icons right">arrow_drop_down</i></a></li>
 			<li><a class="dropdown-button" href="#!"
-				data-activates="dropdown2">USERNAME<i
+				data-activates="dropdown2">${first_name}<i
 					class="material-icons right">arrow_drop_down</i></a></li>
 		</ul>
 		<!-- END WEB VIEW NAV -->
@@ -127,44 +77,45 @@
 								<div class="input-field col s6">
 
 									<input id="icon_prefix" name="first_name" type="text"
-										class="validate"> <label for="icon_prefix">First
-										Name</label>
+										class="validate" value="${user.firstName}"> <label
+										for="icon_prefix">First Name</label>
 								</div>
 								<div class="input-field col s6">
 
 									<input id="icon_telephone" name="last_name" type="tel"
-										class="validate"> <label for="icon_telephone">Last
-										Name</label>
+										class="validate" value="${user.lastName}"> <label
+										for="icon_telephone">Last Name</label>
 								</div>
 
 								<div class="input-field col s6">
 
 									<input id="icon_telephone" name="email" type="tel"
-										class="validate"> <label for="icon_telephone">Email</label>
+										class="validate" value="${user.email}"> <label
+										for="icon_telephone">Email</label>
 								</div>
 
 								<div class="input-field col s6">
 
 									<input id="icon_telephone" name="tin_no" type="tel"
-										class="validate"> <label for="icon_telephone">#Tin
-										No.</label>
+										class="validate" value="${user.tinNo}"> <label
+										for="icon_telephone">#Tin No.</label>
 								</div>
 
 								<div class="input-field col s6">
 									<input id="first_name2" name="birthday" type="date"
-										class="datepicker"> <label class="active"
-										for="first_name2">Birthday</label>
+										class="datepicker" value="${user.date}"> <label
+										class="active" for="first_name2">Birthday</label>
 								</div>
 								<div class="input-field col s6">
 									<div class="switch">
 										<input id="cmn-toggle-1" class="cmn-toggle cmn-toggle-round"
-											type="checkbox" name="admin_flag"> <label
-											for="cmn-toggle-1" class="validate">Admin Flag</label>
+											type="checkbox" name="admin_flag" value="${user.adminFlag}">
+										<label for="cmn-toggle-1" class="validate">Admin Flag</label>
 									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
-								<button type="submit" onclick="myFunction()"
+								<button type="submit"
 									class=" modal-action modal-close waves-effect waves-green btn-flat">Add
 									User</button>
 							</div>
@@ -215,7 +166,7 @@
 							<th data-field="end_time">Admin Flag</th>
 							<th data-field="end_time">Created by/date</th>
 							<th data-field="end_time">Modified by/date</th>
-
+							<th data-field="end_time">Actions</th>
 						</tr>
 					</thead>
 
@@ -223,7 +174,7 @@
 						<c:forEach var="user" items="${user_list}">
 							<tr>
 								<td>${user.email}</td>
-								<td>${user.firstName} ${user.familyName}</td>
+								<td>${user.firstName}${user.familyName}</td>
 								<td>${user.birthdate}</td>
 								<td>${user.address}</td>
 								<c:choose>
@@ -236,6 +187,14 @@
 								</c:choose>
 								<td>${user.createdDate}</td>
 								<td>${user.modifiedDate}</td>
+								<td><a
+									href="${pageContext.request.contextPath}/ars/edit_user?id=${user.id}"
+									class="btn-floating btn-small waves-effect waves-light blue modal-trigger">
+										<i class="material-icons">edit</i>
+								</a> <a href="${pageContext.request.contextPath}/ars/delete_user?id=${user.id}"
+									class="btn-floating btn-small waves-effect waves-light red modal-trigger">
+										<i class="material-icons">delete</i>
+								</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -278,7 +237,7 @@
 
 
 	<!--  Scripts-->
-	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="../aircon-schedule/js/jquery-2.1.1.min.js"></script>
 	<script src="../aircon-schedule/js/materialize.js"></script>
 	<script src="../aircon-schedule/js/init.js"></script>
 	<script type="text/javascript">
